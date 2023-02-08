@@ -1,0 +1,50 @@
+<form [formGroup]="productData" (ngSubmit)="onSubmit(productData)">
+  <div class="form-group">
+    <label for="productName"> <strong>Product Name</strong></label>
+    <input
+      type="text"
+      name="productName"
+      id="productName"
+      class="form-control"
+      formControlName="productName"
+      [(ngModel)]="productName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="prodDescription"><strong>Product Description</strong> </label>
+    <input
+      type="text"
+      name="prodDescription"
+      id="prodDescription"
+      class="form-control"
+      formControlName="prodDescription"
+      [(ngModel)]="prodDescription"
+    />
+  </div>
+  <div class="form-group">
+    <label for="price"><strong>Price</strong> </label>
+    <input type="text" name="price" id="price" class="form-control" [(ngModel)]="price" formControlName="price" />
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div *ngIf="!add">
+        <button class="btn btn-primary">Add Product</button>
+      </div>
+      <div *ngIf="add">
+        <button class="btn btn-primary"(click)="onUpdate()">Update</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div>
+    <div class="card mb-3" *ngFor="let product of productArr">
+        <div class="card-body">
+            <h5>{{product.productName}}</h5>
+            <p>{{product.prodDescription}}</p>
+            <h6>{{product.price}}</h6>
+            <button class="btn btn-primary" (click)="onEdit(product)">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete(product)">Delete</button>
+        </div>
+    </div>
+</div>
